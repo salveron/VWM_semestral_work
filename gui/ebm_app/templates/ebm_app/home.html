@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Extended Boolean Model</title>
+</head>
+<body>
+
+    <!-- Navigation bar at the top -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="navbar-nav mr-auto">
+            <a class="navbar-brand" href="{% url 'ebm_home' %}">Extended Boolean Model</a>
+
+            <!-- Query form -->
+            <form class="form-inline" action="{% url 'ebm_home' %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Find with EBM" name="ebm_search" class="btn btn-success mr-sm-2">
+                <input type="submit" value="Find sequentially" name="sequential_search" class="btn btn-warning mr-sm-2">
+            </form>
+        </div>
+
+        <!-- Elapsed time counter -->
+        {% if time %}
+            <div class="navbar-nav">
+                <a class="nav-item nav-link disabled">Time consumed: {{ time }}s</a>
+            </div>
+        {% endif %}
+    </nav>
+
+    <div class="row justify-content-center mt-sm-3">
+        <div class="col-7 mx-auto">
+
+            <!-- Flash messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Result table -->
+            <table class="table table-striped table-hover content">
+                <tr>
+                    <th>Document Name:</th>
+                    <th class="text-sm-center">Relevance:</th>
+                </tr>
+                {% for doc_name, weight in result %}
+                <tr>
+                    <td class="font-italic">{{ doc_name }}</td>
+                    <td class="text-sm-center">{{ weight }}%</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+</html>
