@@ -50,3 +50,6 @@ Authored by **Nikita Mortuzaiev** and **Roman Zhuravskyi**.
  
  Feel free to improve the code to get better results.
  
+ 
+## !!! This repository is a copy of an original project repository on GitLab and was created only for job recruiters. To see the original repository with the whole tree of commits please contact me personally. !!!
+ 
