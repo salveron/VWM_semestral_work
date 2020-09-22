@@ -49,4 +49,3 @@ Authored by **Nikita Mortuzaiev** and **Roman Zhuravskyi**.
  ## Contributing
  
  Feel free to improve the code to get better results.
- 
